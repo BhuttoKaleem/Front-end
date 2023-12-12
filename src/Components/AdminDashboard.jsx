@@ -11,7 +11,7 @@ const AdminDashboard = () => {
 
   const fetchBlogPosts = async () => {
     try {
-      const response = await axios.get('/api/blog-posts'); // Replace with your backend API endpoint
+      const response = await axios.get('http://localhost:5000/blog-posts'); // Replace with your backend API endpoint
       setBlogPosts(response.data); // Set fetched blog posts to state
     } catch (error) {
       console.error('Error fetching blog posts:', error);
@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
   const deleteBlogPost = async (postId) => {
     try {
-      await axios.delete(`/api/blog-posts/${postId}`); // Replace with your backend API endpoint for deleting blog posts
+      await axios.delete(`http://localhost:5000/blog-posts/${postId}`); // Replace with your backend API endpoint for deleting blog posts
       fetchBlogPosts(); // Refresh blog posts after deletion
     } catch (error) {
       console.error('Error deleting blog post:', error);
@@ -50,6 +50,14 @@ const AdminDashboard = () => {
                     className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
                   >
                     Delete
+                  </button>
+                </td>
+                <td className="px-4 py-2 border-b">
+                  <button
+                    onClick={() => updateBlogPost(post._id)}
+                    className="px-3 py-1 text-white bg-blue-500 rounded hover:bg-red-600 focus:outline-none"
+                  >
+                    Edit
                   </button>
                 </td>
               </tr>
