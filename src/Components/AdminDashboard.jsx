@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
   const deleteBlogPost = async (postId) => {
     try {
-      await axios.delete(`http://localhost:5000/blog-posts/${postId}`); // Replace with your backend API endpoint for deleting blog posts
+      await axios.delete(`http://localhost:5000/blog-posts/delete/${postId}`); // Replace with your backend API endpoint for deleting blog posts
       fetchBlogPosts(); // Refresh blog posts after deletion
     } catch (error) {
       console.error('Error deleting blog post:', error);
