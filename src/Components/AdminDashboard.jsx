@@ -30,43 +30,32 @@ const AdminDashboard = () => {
   return (
     <div className="container mx-auto mt-10">
       <h2 className="mb-4 text-2xl font-bold">Admin Dashboard - Blog Management</h2>
-      <div className="overflow-x-auto">
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              <th className="px-4 py-2 text-left border-b">Title</th>
-              <th className="px-4 py-2 text-left border-b">Content</th>
-              <th className="px-4 py-2 text-left border-b">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {blogPosts.map((post) => (
-              <tr key={post._id}>
-                <td className="px-4 py-2 border-b">{post.title}</td>
-                <td className="px-4 py-2 border-b">{post.content}</td>
-                <td className="px-4 py-2 border-b">
-                  <button
-                    onClick={() => deleteBlogPost(post._id)}
-                    className="px-3 py-1 text-white bg-red-500 rounded hover:bg-red-600 focus:outline-none"
-                  >
-                    Delete
-                  </button>
-                </td>
-                <td className="px-4 py-2 border-b">
-                  <button
-                    onClick={() => updateBlogPost(post._id)}
-                    className="px-3 py-1 text-white bg-blue-500 rounded hover:bg-red-600 focus:outline-none"
-                  >
-                    Edit
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="grid grid-cols-3 gap-4">
+        {blogPosts.map((post) => (
+          <div key={post._id} className="max-w-sm rounded overflow-hidden shadow-lg m-2">
+            <div className="px-6 py-4">
+              <div className="font-bold text-xl mb-2">{post.title}</div>
+              <p className="text-gray-700 text-base">{post.content}</p>
+            </div>
+            <div className="px-6 pt-4 pb-2">
+              <button
+                onClick={() => deleteBlogPost(post._id)}
+                className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 hover:bg-red-600 focus:outline-none"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => updateBlogPost(post._id)}
+                className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 hover:bg-blue-600 focus:outline-none"
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
-  );
+  );  
 };
 
 export default AdminDashboard;
