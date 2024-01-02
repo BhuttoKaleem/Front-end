@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 // import { NavLink } from "react-router-dom";
-
+import {connect} from 'react-redux';
 import { FaBookReader } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa";
+import {logoutUser} from '../redux/userSlice'; 
 
-
-function Header(){
+function Header({ isLoggedIn, user, logout }){
+    const handleLogout = () => {
+        logout();
+      };    
 
     return(
      
@@ -44,3 +47,55 @@ function Header(){
     );
 }
 export default Header;
+
+
+
+
+
+
+
+
+// // Header.js or any component where you want to use Redux
+// import React from 'react';
+// import { connect } from 'react-redux';
+// import { Link } from 'react-router-dom';
+// import { FaRegUserCircle } from 'react-icons/fa';
+// import { logoutUser } from './userSlice'; // Import the logout action
+
+// function Header({ isLoggedIn, user, logout }) {
+//   const handleLogout = () => {
+//     logout();
+//   };
+
+//   return (
+//     <header className="">
+//       {/* ...Your header content... */}
+//       <div className="flex gap-6 items-center">
+//         {isLoggedIn ? (
+//           <>
+//             <Link to="/profile">
+//               <div className="flex items-center gap-2 ">
+//                 <FaRegUserCircle className="text-[1.8rem]" />
+//                 <h4 className="font-bold">{user.username}</h4>
+//               </div>
+//             </Link>
+//             <button onClick={handleLogout}>Logout</button>
+//           </>
+//         ) : (
+//           <Link to="/login">Login</Link>
+//         )}
+//       </div>
+//     </header>
+//   );
+// }
+
+// const mapStateToProps = (state) => ({
+//   isLoggedIn: state.user.isLoggedIn,
+//   user: state.user.user,
+// });
+
+// const mapDispatchToProps = (dispatch) => ({
+//   logout: () => dispatch(logoutUser()),
+// });
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Header);
