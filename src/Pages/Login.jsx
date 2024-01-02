@@ -30,7 +30,6 @@ export default function Login() {
     <React.Fragment>
     <Template>
       <main>
-      <>
       <div className="max-w-md mx-auto mt-10 p-[10vh] bg-gray-200 rounded-md">
       <h2 className="mb-4 text-2xl font-bold text-center">Login</h2>
       <form onSubmit={handleSubmit}>
@@ -69,8 +68,8 @@ export default function Login() {
           Login
         </button>
       </form>
-    </div>      </>
-          </main>
+    </div>           
+    </main>
           </Template>
           </React.Fragment>
   )

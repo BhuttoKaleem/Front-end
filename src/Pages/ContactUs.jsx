@@ -1,11 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import Template from "../Components/Template";
-
-
-
-
-
 export default function ContactUs() {
         const [formData, setFormData] = useState({
           name: '',
@@ -36,11 +31,9 @@ export default function ContactUs() {
       
       
     return (
-    <>
             <React.Fragment>
           <Template>
             <main>
-            <>
             <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 shadow-md rounded-md">
       <h2 className="text-2xl mb-4 text-center font-bold">Contact Us</h2>
       <form onSubmit={handleSubmit}>
@@ -94,10 +87,8 @@ export default function ContactUs() {
         </button>
       </form>
     </div>     
-            </>
                 </main>
                 </Template>
                 </React.Fragment>
-  </>
   )
 }

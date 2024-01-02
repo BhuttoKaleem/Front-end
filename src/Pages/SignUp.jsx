@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
 import Template from "../Components/Template";
-
 export default function SignUp() {
         const [formData, setFormData] = useState({
           username: '',
@@ -35,7 +34,6 @@ export default function SignUp() {
 <React.Fragment>
           <Template>
             <main>
-            <>
             <div className="max-w-md mx-auto mt-10 p-[10vh] bg-gray-200 rounded-md">
       <h2 className="mb-4 text-2xl font-bold text-center">Sign Up</h2>
       <form onSubmit={handleSubmit}>
@@ -103,7 +101,6 @@ export default function SignUp() {
         </button>
       </form>
     </div>  
-            </>
                 </main>
                 </Template>
                 </React.Fragment>
