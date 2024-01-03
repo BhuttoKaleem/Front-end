@@ -5,33 +5,56 @@ import HomePage from "../Pages/Homepage";
 import SignUp from "../Pages/SignUp";
 import Login from "../Pages/Login";
 import AdminDashboard from "../Pages/AdminPage";
+import Template from "../Components/Template";
+import Profile from '../Components/Profile';
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage></HomePage>,
+      element: <Template>
+        <HomePage/>
+      </Template>,  
     },
   
     {
       path: "/about",
-      element: <About></About>,
+      element: <Template>
+         <About/>
+        </Template>,
     },
   
     {
       path: "/contactUs",
-      element: <ContactUs />,
+      element: <Template>
+        <ContactUs/>
+      </Template>
+      ,
     },
 
     {
       path: "/SignUp",
-      element: <SignUp />,
+      element: <Template>
+      <SignUp />
+        </Template>, 
     },
     {
       path: "/Login",
-      element: <Login />,
+      element:<Template>
+      <Login />
+      </Template>, 
     },
     {
       path: "/AdminDashboard",
-      element: <AdminDashboard />,
+      element: 
+      <Template>
+      <AdminDashboard />
+      </Template>,
+    },
+    {
+      path: "/profile",
+      element: 
+      <Template>
+      <Profile />
+      </Template>,
     },
   ]);
   export default router;

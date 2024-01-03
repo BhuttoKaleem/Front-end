@@ -8,7 +8,7 @@ export default function Login() {
         });
       
         const handleChange = (e) => {
-          const { name, value } = e.target;
+          const { name, value } = e.target; 
           setFormData((prevData) => ({
             ...prevData,
             [name]: value,
@@ -28,7 +28,6 @@ export default function Login() {
   
     return (
     <React.Fragment>
-    <Template>
       <main>
       <div className="max-w-md mx-auto mt-10 p-[10vh] bg-gray-200 rounded-md">
       <h2 className="mb-4 text-2xl font-bold text-center">Login</h2>
@@ -70,7 +69,6 @@ export default function Login() {
       </form>
     </div>           
     </main>
-          </Template>
           </React.Fragment>
   )
 }

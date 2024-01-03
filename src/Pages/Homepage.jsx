@@ -1,17 +1,12 @@
 import React from "react";
-import Template from "../Components/Template";
+import Posts from "../Components/Posts";
  function HomePage() {
     return (
         <React.Fragment>
-          <Template>
-            <main>
-            <>
-              Home Page
-            </>
+            <main>   
+              <Posts/>
                 </main>
-                </Template>
                 </React.Fragment>
                 )
-
 }
 export default HomePage

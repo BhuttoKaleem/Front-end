@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AdminDashboard = () => {
-  const [blogPosts, setBlogPosts] = useState([]);
+const Posts = () => {
+
+    const [blogPosts, setBlogPosts] = useState([]);
 
   useEffect(() => {
     // Fetch blog posts from the backend when component mounts
@@ -26,11 +27,10 @@ const AdminDashboard = () => {
       console.error('Error deleting blog post:', error);
     }
   };
-
   return (
-    <div className="container mx-auto mt-10">
-      <h2 className="mb-4 text-2xl font-bold">Admin Dashboard - Blog Management</h2>
-      <div className="">
+    <section>
+        <div className="container mx-auto mt-10">
+      <div className="flex">
         {blogPosts.map((post) => (
           <div key={post._id} className="max-w-sm rounded overflow-hidden shadow-lg m-2">
             <div className="px-6 py-4">
@@ -55,7 +55,8 @@ const AdminDashboard = () => {
         ))}
       </div>
     </div>
-  );  
-};
+    </section>
+  )
+}
 
-export default AdminDashboard;
+export default Posts

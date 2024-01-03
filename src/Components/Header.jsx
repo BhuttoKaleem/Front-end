@@ -16,7 +16,7 @@ function Header({ isLoggedIn, user, logout }){
           <header className="">
             <nav className="flex justify-between px-16 py-8 text-white bg-slate-600">
                 <div>
-                    <Link>
+                    <Link to="/">
                     <div className="flex gap-2">
                     <FaBookReader className="text-[2rem]" />
                     <h3 className="self-end text-xl font-bold">Kaleem's Blog</h3>

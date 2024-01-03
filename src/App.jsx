@@ -1,13 +1,14 @@
 import './App.css'
-import Template from './Components/Template'
-import { Provider } from 'react-redux';
-import store from './redux/store'; 
-function App() {
+import {Routes, Route} from 'react-router-dom'
 
+function App() {
   return (
-    <Provider store={store}>
-      <Template/>
-    </Provider>
+    <div>
+      {/* <Header/> */}
+      <Routes>
+        <Route path="/" element={<p>home route</p>} />
+        </Routes> 
+    </div>
   )
 }
 
