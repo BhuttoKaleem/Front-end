@@ -1,23 +1,42 @@
 import React from 'react'
 import { useState } from 'react';
-import Template from '../Components/Template';
+import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux';
+import { LOGIN, LOGOUT } from '../redux/actions';
+import  axios  from 'axios';
 export default function Login() {
-        const [formData, setFormData] = useState({
-          email: '',
-          password: '',
+  const state = useSelector(state=> state?.user);
+          const dispatch = useDispatch();
+          const globalState = useSelector((state)=>state)
+          const navigate = useNavigate();
+          const [userData,setUserData] = useState();
+          const [formData, setFormData] = useState({
+          // email: '',
+          // password: '',
         });
-      
         const handleChange = (e) => {
+          e.preventDefault();
           const { name, value } = e.target; 
           setFormData((prevData) => ({
             ...prevData,
             [name]: value,
           }));
         };
-      
-        const handleSubmit = (e) => {
+        const handleSubmit = async (e) => {
           e.preventDefault();
           // Perform login logic here (e.g., API request to authenticate user)
+            try {
+              const response = await axios.post('http://localhost:5000/user/login',{
+                email: formData.email,
+                password:formData.password
+              }); 
+              setUserData(response.data); // Set fetched user data to state
+              dispatch({type:LOGIN,payload: response.data})
+            } catch (error) {
+              console.log(error);
+            }
+            
+        
           console.log('Login form submitted:', formData);
           // Reset form fields after submission
           setFormData({
@@ -25,7 +44,6 @@ export default function Login() {
             password: '',
           });
         };
-  
     return (
     <React.Fragment>
       <main>
@@ -67,7 +85,8 @@ export default function Login() {
           Login
         </button>
       </form>
-    </div>           
+    </div>
+    {/* <div > </div>       */}
     </main>
           </React.Fragment>
   )

@@ -45,7 +45,7 @@ const Posts = () => {
                 Delete
               </button>
               <button
-                onClick={() => updateBlogPost(post._id)}
+                // onClick={() => updateBlogPost(post._id)}
                 className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 hover:bg-blue-600 focus:outline-none"
               >
                 Edit

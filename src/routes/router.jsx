@@ -7,55 +7,21 @@ import Login from "../Pages/Login";
 import AdminDashboard from "../Pages/AdminPage";
 import Template from "../Components/Template";
 import Profile from '../Components/Profile';
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Template>
-        <HomePage/>
-      </Template>,  
-    },
-  
-    {
-      path: "/about",
-      element: <Template>
-         <About/>
-        </Template>,
-    },
-  
-    {
-      path: "/contactUs",
-      element: <Template>
-        <ContactUs/>
-      </Template>
-      ,
-    },
+import { Route, Routes } from "react-router-dom";
 
-    {
-      path: "/SignUp",
-      element: <Template>
-      <SignUp />
-        </Template>, 
-    },
-    {
-      path: "/Login",
-      element:<Template>
-      <Login />
-      </Template>, 
-    },
-    {
-      path: "/AdminDashboard",
-      element: 
-      <Template>
-      <AdminDashboard />
-      </Template>,
-    },
-    {
-      path: "/profile",
-      element: 
-      <Template>
-      <Profile />
-      </Template>,
-    },
-  ]);
-  export default router;
-  
+import ProtectedByUser from "./Protected";
+
+
+  const MyRoutes=()=>
+  <Routes>
+          <Route exact path="/" element={<Template><HomePage /></Template>} />
+
+          <Route exact path="/about" element={<Template><About/></Template>}/>
+          <Route exact path="/contactUs" element={<Template><ContactUs/></Template>}/>
+          <Route exact path="/SignUp" element={<Template><SignUp/></Template>}/>
+          <Route exact path="Login" element={<Template><Login/></Template>}/>
+          <Route   element={<ProtectedByUser/>}>
+          <Route  path="/admin" element={<AdminDashboard />} />
+          </Route>
+  </Routes>
+  export default MyRoutes;

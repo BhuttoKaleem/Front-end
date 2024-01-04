@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
+import {useDispatch, useSelector} from 'react-redux';
+import { LOGIN, LOGOUT } from '../redux/actions';
 // import { NavLink } from "react-router-dom";
-import {connect} from 'react-redux';
 import { FaBookReader } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
-import { FaRegUserCircle } from "react-icons/fa";
-import {logoutUser} from '../redux/userSlice'; 
+import { FaRegUserCircle } from "react-icons/fa"; 
 
-function Header({ isLoggedIn, user, logout }){
-    const handleLogout = () => {
-        logout();
-      };    
-
+function Header(){
+    const dispatch = useDispatch();
+   const userData = useSelector((state)=>state.user.userData)
+   const handleLogout = () => {
+    dispatch({ type: LOGOUT });
+  }
     return(
-     
           <header className="">
             <nav className="flex justify-between px-16 py-8 text-white bg-slate-600">
                 <div>
@@ -32,15 +32,18 @@ function Header({ isLoggedIn, user, logout }){
                     </p>
                 </div>
                 <div className="flex gap-6 items-center">
-                    <Link to="/profile">
+                {userData ? (
+                    /* <Link to="/profile"> */
                     <div className="flex items-center gap-2 ">
                         <FaRegUserCircle className="text-[1.8rem]"/>
-                        <h4 className="font-bold">Username</h4>
+                        <h4 className="font-bold">{userData.username}</h4>
+                        <button onClick={handleLogout}>Logout</button>
                     </div>
-                    </Link>
+                ) : (
+                    /* </Link> */
                     <Link to="/">Logout</Link>
-                               </div>
-
+                    )}
+                </div>
             </nav>
             </header>
 
