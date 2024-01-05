@@ -1,12 +1,14 @@
-import React from 'react'
 import { useState } from 'react';
-import Template from "../Components/Template";
+import  axios  from 'axios';
+import Swal from 'sweetalert2'
+import {useNavigate} from 'react-router-dom'
 export default function SignUp() {
+  const navigate = useNavigate();
+  const [message,setMessage] = useState();
         const [formData, setFormData] = useState({
           username: '',
           email: '',
           password: '',
-          confirmPassword: '',
         });
       
         const handleChange = (e) => {
@@ -16,22 +18,41 @@ export default function SignUp() {
             [name]: value,
           }));      
         }
-
-        const handleSubmit = (e) => {
+        const handleSubmit = async(e) => {
             e.preventDefault();
             // Perform signup logic here (e.g., API request to register user)
-            console.log('SignUp form submitted:', formData);
+            try {
+              const response = await axios.post('http://localhost:5000/user/signup',{
+                username: formData.username,
+                email: formData.email,
+                password:formData.password
+              });
+              Swal.fire({
+                title: "Registered!",
+                text: "Registered Successfully!",
+                icon: "success"
+              });
+              navigate('/login')
+              // setIsLoggedIn(true)          
+            } catch (error) {
+              // setMessage("user already registered please login");
+              Swal.fire({
+                title: "Registration failed!",
+                text: "you are already registered please login!",
+                icon: "error"
+              });
+              navigate('/login')
+            }
+            // console.log('SignUp form submitted:', formData);
             // Reset form fields after submission
             setFormData({
               username: '',
               email: '',
               password: '',
-              confirmPassword: '',
             });
           };
-
     return (
-<React.Fragment>
+
             <main>
             <div className="max-w-md mx-auto mt-10 p-[10vh] bg-gray-200 rounded-md">
       <h2 className="mb-4 text-2xl font-bold text-center">Sign Up</h2>
@@ -78,29 +99,16 @@ export default function SignUp() {
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
           />
         </div>
-        <div className="mb-6">
-          <label htmlFor="confirmPassword" className="block text-gray-700">
-            Confirm Password:
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-          />
-        </div>
-        <button
+          <button
           type="submit"
           className="w-full px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
         >
           Sign Up
         </button>
       </form>
-    </div>  
+    </div>
+    <div className='bg-red-400'> {message}</div>  
                 </main>
-                </React.Fragment>
+
     )
     }

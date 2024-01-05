@@ -3,7 +3,7 @@ export default function About() {
   return (
             <React.Fragment>
             <main>
-              About us page
+              About us
                 </main>
                 </React.Fragment>
   )

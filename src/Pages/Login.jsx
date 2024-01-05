@@ -1,12 +1,13 @@
-import React from 'react'
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
-import { LOGIN, LOGOUT } from '../redux/actions';
+import { LOGIN} from '../redux/actions';
 import  axios  from 'axios';
+import Swal from "sweetalert2";
 export default function Login() {
-  const state = useSelector(state=> state?.user);
+          const state = useSelector(state=> state?.user);
           const dispatch = useDispatch();
+          const [message, setMessage] = useState();
           const globalState = useSelector((state)=>state)
           const navigate = useNavigate();
           const [userData,setUserData] = useState();
@@ -32,11 +33,21 @@ export default function Login() {
               }); 
               setUserData(response.data); // Set fetched user data to state
               dispatch({type:LOGIN,payload: response.data})
+              // setIsLoggedIn(true)
+              Swal.fire({
+                title: "login successful!",
+                text: "logged in Successfully!",
+                icon: "success"
+              });
+              navigate('/')
             } catch (error) {
-              console.log(error);
+              // setMessage("incorrect email or password");
+              Swal.fire({
+                title: "login failed",
+                text: "incorrect email or password",
+                icon: "error"
+              });
             }
-            
-        
           console.log('Login form submitted:', formData);
           // Reset form fields after submission
           setFormData({
@@ -45,7 +56,6 @@ export default function Login() {
           });
         };
     return (
-    <React.Fragment>
       <main>
       <div className="max-w-md mx-auto mt-10 p-[10vh] bg-gray-200 rounded-md">
       <h2 className="mb-4 text-2xl font-bold text-center">Login</h2>
@@ -86,8 +96,7 @@ export default function Login() {
         </button>
       </form>
     </div>
-    {/* <div > </div>       */}
+    <div className='bg-red-400'> {message}</div>
     </main>
-          </React.Fragment>
   )
 }

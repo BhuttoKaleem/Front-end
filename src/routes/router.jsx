@@ -10,15 +10,17 @@ import Profile from '../Components/Profile';
 import { Route, Routes } from "react-router-dom";
 
 import ProtectedByUser from "./Protected";
-
+import Posts from "../Components/ManagePosts";
+import CreatePost from "../Pages/AddPost";
 
   const MyRoutes=()=>
   <Routes>
           <Route exact path="/" element={<Template><HomePage /></Template>} />
-
           <Route exact path="/about" element={<Template><About/></Template>}/>
           <Route exact path="/contactUs" element={<Template><ContactUs/></Template>}/>
           <Route exact path="/SignUp" element={<Template><SignUp/></Template>}/>
+          <Route exact path="/UserPosts" element={<Template><Posts/></Template>}/>
+          <Route exact path="/AddPost" element={<Template><CreatePost/></Template>}/>
           <Route exact path="Login" element={<Template><Login/></Template>}/>
           <Route   element={<ProtectedByUser/>}>
           <Route  path="/admin" element={<AdminDashboard />} />

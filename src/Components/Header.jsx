@@ -1,16 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import { LOGIN, LOGOUT } from '../redux/actions';
 // import { NavLink } from "react-router-dom";
 import { FaBookReader } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa"; 
-
 function Header(){
+    const Navigate = useNavigate();
     const dispatch = useDispatch();
    const userData = useSelector((state)=>state.user.userData)
    const handleLogout = () => {
     dispatch({ type: LOGOUT });
+    Navigate("/")
+  }
+  const linkToProfile = ()=>{
+    Navigate('/Front-end/src/Components/Profile.jsx');
   }
     return(
           <header className="">
@@ -19,7 +24,7 @@ function Header(){
                     <Link to="/">
                     <div className="flex gap-2">
                     <FaBookReader className="text-[2rem]" />
-                    <h3 className="self-end text-xl font-bold">Kaleem's Blog</h3>
+                    <h3 className="self-end text-xl font-bold">Daily Biz</h3>
                     </div>
                     </Link>
                 </div>
@@ -33,15 +38,15 @@ function Header(){
                 </div>
                 <div className="flex gap-6 items-center">
                 {userData ? (
-                    /* <Link to="/profile"> */
                     <div className="flex items-center gap-2 ">
-                        <FaRegUserCircle className="text-[1.8rem]"/>
-                        <h4 className="font-bold">{userData.username}</h4>
+                        {/* <Link to="/profile"/>   */}
+                        <FaRegUserCircle className="text-[1.8rem]" />
+                        <h4 className="font-bold" onClick={linkToProfile}>{userData.username}</h4>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                 ) : (
                     /* </Link> */
-                    <Link to="/">Logout</Link>
+                    <Link to="/login">Login</Link>
                     )}
                 </div>
             </nav>
@@ -50,55 +55,3 @@ function Header(){
     );
 }
 export default Header;
-
-
-
-
-
-
-
-
-// // Header.js or any component where you want to use Redux
-// import React from 'react';
-// import { connect } from 'react-redux';
-// import { Link } from 'react-router-dom';
-// import { FaRegUserCircle } from 'react-icons/fa';
-// import { logoutUser } from './userSlice'; // Import the logout action
-
-// function Header({ isLoggedIn, user, logout }) {
-//   const handleLogout = () => {
-//     logout();
-//   };
-
-//   return (
-//     <header className="">
-//       {/* ...Your header content... */}
-//       <div className="flex gap-6 items-center">
-//         {isLoggedIn ? (
-//           <>
-//             <Link to="/profile">
-//               <div className="flex items-center gap-2 ">
-//                 <FaRegUserCircle className="text-[1.8rem]" />
-//                 <h4 className="font-bold">{user.username}</h4>
-//               </div>
-//             </Link>
-//             <button onClick={handleLogout}>Logout</button>
-//           </>
-//         ) : (
-//           <Link to="/login">Login</Link>
-//         )}
-//       </div>
-//     </header>
-//   );
-// }
-
-// const mapStateToProps = (state) => ({
-//   isLoggedIn: state.user.isLoggedIn,
-//   user: state.user.user,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   logout: () => dispatch(logoutUser()),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Header);
