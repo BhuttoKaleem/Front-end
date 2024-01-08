@@ -2,7 +2,6 @@ import { Link, Navigate } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { LOGIN, LOGOUT } from '../redux/actions';
-// import { NavLink } from "react-router-dom";
 import { FaBookReader } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FaRegUserCircle } from "react-icons/fa"; 
@@ -13,9 +12,6 @@ function Header(){
    const handleLogout = () => {
     dispatch({ type: LOGOUT });
     Navigate("/")
-  }
-  const linkToProfile = ()=>{
-    Navigate('/Front-end/src/Components/Profile.jsx');
   }
     return(
           <header className="">
@@ -40,8 +36,11 @@ function Header(){
                 {userData ? (
                     <div className="flex items-center gap-2 ">
                         {/* <Link to="/profile"/>   */}
-                        <FaRegUserCircle className="text-[1.8rem]" />
-                        <h4 className="font-bold" onClick={linkToProfile}>{userData.username}</h4>
+                        {/* <FaRegUserCircle className="text-[1.8rem]" /> */}
+                        <Link to="/profile">
+                            <FaRegUserCircle className="text-[1.8rem]" />
+                        </Link>
+                        <h4 className="font-bold">{userData.username}</h4>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
                 ) : (
@@ -51,7 +50,6 @@ function Header(){
                 </div>
             </nav>
             </header>
-
     );
 }
 export default Header;

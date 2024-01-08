@@ -35,9 +35,11 @@ export default function Login() {
               dispatch({type:LOGIN,payload: response.data})
               // setIsLoggedIn(true)
               Swal.fire({
-                title: "login successful!",
-                text: "logged in Successfully!",
-                icon: "success"
+                position: "top-center",
+                icon: "success",
+                title: "Logged in Successfully!",
+                showConfirmButton: true,
+                timer: 1000
               });
               navigate('/')
             } catch (error) {

@@ -20,7 +20,7 @@ const SideMenu = () => {
             {userData && <Link to="/UserPosts">Manage</Link>}
           </li>
         <li>
-          <Link to="/signup">Sign up</Link>
+         {!userData && <Link to="/signup">Sign up</Link>}
         </li>
         <li>
           <Link to="/contactus">Contact us</Link>

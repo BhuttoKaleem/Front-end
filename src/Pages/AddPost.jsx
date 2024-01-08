@@ -23,7 +23,7 @@ export default function CreatePost() {
         const handleSubmit = async (e) => {
             e.preventDefault();
             try {
-              const response = await axios.post('http://localhost:5000/blog-posts/createpost/', {
+              await axios.post('http://localhost:5000/blog-posts/createpost/', {
                   title: formData.title,
                   content: formData.description,
                   author: userId

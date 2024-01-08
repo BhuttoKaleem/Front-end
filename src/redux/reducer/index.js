@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from '../actions';
+import { LOGIN, LOGOUT, UPDATE_USER } from '../actions';
 const userInitialState = {};
 const userReducer = (state = userInitialState, action) => {
     switch (
@@ -13,6 +13,11 @@ const userReducer = (state = userInitialState, action) => {
             delete state["userData"];
             console.log("after logout", state);
             return {...state };
+        case UPDATE_USER:
+            return {
+                ...state,
+                userData:action.payload
+            };
     }
     return state;
 };

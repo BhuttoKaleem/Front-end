@@ -20,6 +20,7 @@ import CreatePost from "../Pages/AddPost";
           <Route exact path="/contactUs" element={<Template><ContactUs/></Template>}/>
           <Route exact path="/SignUp" element={<Template><SignUp/></Template>}/>
           <Route exact path="/UserPosts" element={<Template><Posts/></Template>}/>
+          <Route exact path="/Profile" element={<Template><Profile/></Template>}/>
           <Route exact path="/AddPost" element={<Template><CreatePost/></Template>}/>
           <Route exact path="Login" element={<Template><Login/></Template>}/>
           <Route   element={<ProtectedByUser/>}>
