@@ -27,26 +27,26 @@ const Posts = () => {
   };
 
   const deleteBlogPost = async (postId) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You want to delete this post?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your post has been deleted.",
-          icon: "success"
-        });
-      }
-    });
     try {
-      await axios.delete(`http://localhost:5000/blog-posts/deletepost/${postId}`);
-      fetchBlogPosts(userId);
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to delete this post?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async(result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your post has been deleted.",
+            icon: "success"
+          });
+          await axios.delete(`http://localhost:5000/blog-posts/deletepost/${postId}`);
+          fetchBlogPosts(userId);
+        }
+      });
     } catch (error) {
         Swal.fire({
         title: "Deletion failed!",

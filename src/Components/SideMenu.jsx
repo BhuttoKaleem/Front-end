@@ -8,8 +8,8 @@ const SideMenu = () => {
   const userData = useSelector((state)=>state.user.userData)
   return (
     <div className="flex justify-between">
-    <div className="h-[60rem] w-full bg-blue-500 text-white">
-      <ul className="mt-8">
+    <div className="h-[100vh] w-full bg-blue-500">
+      <ul className="mt-8 text-center text-white">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -35,8 +35,6 @@ const SideMenu = () => {
           {/* <Link to="/admindashboard">Admin</Link> */}
         {/* </li>  */}
       </ul>
-    </div>
-    <div className="h-[100vh]  bg-white-500">
     </div>
   </div>
   )

@@ -20,7 +20,7 @@ const Posts = () => {
       const response = await axios.get("http://localhost:5000/blog-posts"); // Replace with your backend API endpoint
       setBlogPosts(response.data); // Set fetched blog posts to state
     } catch (error) {
-      setMessage("Error fetching blog posts:", error);
+      setMessage("Check Your Internet Connection:", error);
     }
   };
 
@@ -41,7 +41,7 @@ const Posts = () => {
           {blogPosts.map((post) => (
             <div
               key={post._id}
-              className="max-w-sm rounded overflow-hidden shadow-lg m-2"
+              className="max-w-sm rounded overflow-none shadow-lg m-2"
             >
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{post.title}</div>
@@ -50,7 +50,7 @@ const Posts = () => {
                   <p className="text-white bg-indigo-700 text-base">
                     by: {post?.author.username}
                     &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                    &nbsp; &nbsp; at:{" "}
+                     at:{" "}
                     {new Date(post?.date).toLocaleDateString() +
                       " " +
                       new Date(post?.date).toLocaleTimeString([], {

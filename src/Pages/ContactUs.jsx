@@ -31,8 +31,8 @@ export default function ContactUs() {
       
     return (
             <React.Fragment>
-            <main>
-            <div className="max-w-md mx-auto mt-10 p-6 bg-gray-100 shadow-md rounded-md">
+            <main className='flex items-center justify-items-center justify-center h-screen bg-gray-100'>
+            <div className="p-6 m-4 bg-white rounded shadow-xl">
       <h2 className="text-2xl mb-4 text-center font-bold">Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

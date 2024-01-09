@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
+import useAuth from '../Components/UseAuth';
 import { LOGIN} from '../redux/actions';
 import  axios  from 'axios';
 import Swal from "sweetalert2";
 export default function Login() {
           const state = useSelector(state=> state?.user);
           const dispatch = useDispatch();
-          const [message, setMessage] = useState();
+          const authorized = useAuth();
           const globalState = useSelector((state)=>state)
           const navigate = useNavigate();
           const [userData,setUserData] = useState();
@@ -98,7 +99,6 @@ export default function Login() {
         </button>
       </form>
     </div>
-    <div className='bg-red-400'> {message}</div>
     </main>
   )
 }

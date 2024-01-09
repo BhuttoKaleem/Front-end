@@ -1,10 +1,8 @@
-import { useSelector } from "react-redux";
+import React from "react";
+import useAuth from "../Components/UseAuth";
 import { Outlet } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-const ProtectedByUser = () => {
-  const navigate = useNavigate();
-  const globalState = useSelector((state)=>state);
-    const isAdmin = true;
-  return isAdmin === true ? <Outlet /> :<>not authorized</>;
-};
-export default ProtectedByUser;
+import  UnAuthorized from '../Pages/UnAuthorized'
+export default function Protected() {
+  const isAuthorized = useAuth();
+  return isAuthorized === true ? <Outlet /> : <UnAuthorized />;
+}
