@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux';
 import useAuth from '../Components/UseAuth';
 import { LOGIN} from '../redux/actions';
+import {Link} from 'react-router-dom'
 import  axios  from 'axios';
 import Swal from "sweetalert2";
 export default function Login() {
@@ -98,6 +99,7 @@ export default function Login() {
           Login
         </button>
       </form>
+      <div className='items-center'><span>Don't have an account? <Link to={"/SignUp"} className='font-bold'>Sign up</Link></span></div>
     </div>
     </main>
   )

@@ -9,16 +9,18 @@ import { Route, Routes } from "react-router-dom";
 import Protected from "./Protected";
 import CreatePost from "../Pages/AddPost";
 import NotFoundPage from "../Pages/NotFoundPage";
+import Comments from "../Components/Comments";
 import UnAuthorized from "../Pages/UnAuthorized";
 import Posts from "../Components/ManagePosts";
   const MyRoutes=()=>
   <Routes>
           <Route exact path="/" element={<Template><HomePage /></Template>} />
+          <Route exact path="/comments/:postId" element={<Template><Comments /></Template>} />
           <Route exact path="/about" element={<Template><About/></Template>}/>
           <Route exact path="/contactUs" element={<Template><ContactUs/></Template>}/>
           <Route exact path="/SignUp" element={<Template><SignUp/></Template>}/>
-          <Route path="/UnAuthorized" element={<UnAuthorized />} />
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/UnAuthorized" element={<Template><UnAuthorized /></Template>} />
+          <Route path="*" element={<Template><NotFoundPage /></Template>} />
           <Route exact path="/Login" element={<Template><Login/></Template>}/>
           <Route element={<Protected/>}>
                 <Route exact path="/UserPosts" element={<Template><Posts/></Template>}/>

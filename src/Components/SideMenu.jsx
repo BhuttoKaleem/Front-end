@@ -7,9 +7,9 @@ const SideMenu = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state)=>state.user.userData)
   return (
-    <div className="flex justify-between">
-    <div className="h-[100vh] w-full bg-blue-500">
-      <ul className="mt-8 text-center text-white">
+    <div className="flex h-[120vh] justify-between">
+    <div className="w-full bg-blue-500">
+      <ul className="mt-8 text-center text-white font-bold">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -20,20 +20,11 @@ const SideMenu = () => {
             {userData && <Link to="/UserPosts">Manage</Link>}
           </li>
         <li>
-         {!userData && <Link to="/signup">Sign up</Link>}
+          <Link to="/about">About us</Link>
         </li>
         <li>
           <Link to="/contactus">Contact us</Link>
         </li> 
-        <li>
-          <Link to="/about">About us</Link>
-        </li>
-        <li>
-            {/* <button onClick={() => setIsLoggedIn(false)}>Logout</button>  */}
-            {/* <Link to="/login">Login</Link>  */}
-        </li>
-          {/* <Link to="/admindashboard">Admin</Link> */}
-        {/* </li>  */}
       </ul>
     </div>
   </div>

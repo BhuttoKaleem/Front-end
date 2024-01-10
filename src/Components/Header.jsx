@@ -28,8 +28,7 @@ function Header(){
                     <p className="flex items-center bg-white rounded-md">
                         <label htmlFor="Search" className="absolute left-[-1000px]">Search</label>
                         <input placeholder="Search..." className="bg-transparent p-2 rounded-md w-[250px] outline-none text-[#45474B]" type="text" name="search" id="search" />
-                        <CiSearch className="text-black mr-2 text-2xl cursor-pointer hover:bg-gray-400" />
-                    
+                        <CiSearch className="text-black mr-2 text-2xl cursor-pointer hover:bg-gray-400" />            
                     </p>
                 </div>
                 <div className="flex gap-6 items-center">
@@ -45,7 +44,7 @@ function Header(){
                     </div>
                 ) : (
                     /* </Link> */
-                    <Link to="/login">Login</Link>
+                    <Link to="/login" className="font-bold">Login</Link>
                     )}
                 </div>
             </nav>

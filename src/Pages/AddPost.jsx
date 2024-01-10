@@ -47,14 +47,13 @@ export default function CreatePost() {
             }
           }          
     return (
-
             <main>
             <div className="max-w-md mx-auto mt-10 p-[10vh] bg-gray-200 rounded-md">
       <h2 className="mb-4 text-2xl font-bold text-center">Publish Blog</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="username" className="block text-gray-700">
-            title:
+            Title:
           </label>
           <input
             type="text"
@@ -68,7 +67,7 @@ export default function CreatePost() {
         </div>
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700">
-            description:
+            Description:
           </label>
           <textarea
             type="text"

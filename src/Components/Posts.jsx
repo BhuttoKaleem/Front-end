@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-const Posts = () => {
+const Posts = ({posts}) => {
   const userData = useSelector((state) => state.userData);
   const [message, setMessage] = useState();
   const [blogPosts, setBlogPosts] = useState([]);
@@ -20,7 +21,7 @@ const Posts = () => {
       const response = await axios.get("http://localhost:5000/blog-posts"); // Replace with your backend API endpoint
       setBlogPosts(response.data); // Set fetched blog posts to state
     } catch (error) {
-      setMessage("Check Your Internet Connection:", error);
+      setMessage("Connection failed, Check Your Internet Connection:", error);
     }
   };
 
@@ -28,28 +29,30 @@ const Posts = () => {
     try {
       await axios.delete(
         `http://localhost:5000/blog-posts/deletepost/${postId}`
-      ); // Replace with your backend API endpoint for deleting blog posts
-      fetchBlogPosts(); // Refresh blog posts after deletion
+      ); 
+      fetchBlogPosts(); 
+        
     } catch (error) {
-      setMessage("can't delete this post");
+    
     }
   };
   return (
     <section>
       <div className="container mx-auto mt-10">
-        <div className="flex">
+        <div className="grid grid-cols-3 gap-4">
           {blogPosts.map((post) => (
             <div
               key={post._id}
               className="max-w-sm rounded overflow-none shadow-lg m-2"
             >
               <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{post.title}</div>
-                <p className="text-gray-700 text-base">{post.content}</p>
+                <div className="font-bold text-xl mb-2 text-black">{post.title}</div>
+                <span className="text-gray-700 text-base">{post.content}</span>
+                <span>...</span><Link to={`/comments/${post._id}`}>Details</Link>
                 <div className="flex flex-row gap-[20vh]">
-                  <p className="text-white bg-indigo-700 text-base">
+                  <span className="text-white bg-indigo-700 text-base">
                     by: {post?.author.username}
-                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                      at:{" "}
                     {new Date(post?.date).toLocaleDateString() +
                       " " +
@@ -57,7 +60,7 @@ const Posts = () => {
                         hour: "2-digit",
                         minute: "2-digit",
                       })}
-                  </p>
+                  </span>
                 </div>
               </div>
               {userData && userData.role === "admin" && (
@@ -80,7 +83,6 @@ const Posts = () => {
           ))}
         </div>
       </div>
-      <div>{message}</div>
     </section>
   );
 };

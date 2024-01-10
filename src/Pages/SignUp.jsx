@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import  axios  from 'axios';
 import Swal from 'sweetalert2'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,Link} from 'react-router-dom'
 export default function SignUp() {
   const navigate = useNavigate();
   const [message,setMessage] = useState();
@@ -106,9 +106,8 @@ export default function SignUp() {
           Sign Up
         </button>
       </form>
+      <div className='items-center'><span>Already have an account? <Link to={"/Login"} className='font-bold'>Login</Link></span></div>
     </div>
-    <div className='bg-red-400'> {message}</div>  
                 </main>
-
     )
     }

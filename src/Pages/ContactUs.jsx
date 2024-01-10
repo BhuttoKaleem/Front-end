@@ -26,13 +26,11 @@ export default function ContactUs() {
             email: '',
             message: '',
           });
-        };
-      
-      
+        };     
     return (
             <React.Fragment>
-            <main className='flex items-center justify-items-center justify-center h-screen bg-gray-100'>
-            <div className="p-6 m-4 bg-white rounded shadow-xl">
+            <main className='flex justify-items-center justify-center h-screen bg-gray-100'>
+            <div className="p-6 m-4 bg-white rounded shadow-xl ">
       <h2 className="text-2xl mb-4 text-center font-bold">Contact Us</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">

@@ -10,7 +10,7 @@ const Posts = () => {
   const [editPostId, setEditPostId] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedContent, setEditedContent] = useState('');
-
+  const [message,setMessage] = useState();
   useEffect(() => {
     if (userId) {
       fetchBlogPosts(userId);
@@ -22,7 +22,7 @@ const Posts = () => {
       const response = await axios.get(`http://localhost:5000/blog-posts/getPostsByUser/${userId}`);
       setBlogPosts(response.data);
     } catch (error) {
-      // Handle error
+      setMessage('No post found, please check your internet connection')
     }
   };
 
@@ -96,7 +96,7 @@ const Posts = () => {
   return (
     <section>
       <div className="container mx-auto mt-2">
-        <div className="flex">
+        <div className="grid grid-cols-3 gap-4">
           {blogPosts.map((post) => (
             <div key={post._id} className="max-w-sm rounded shadow-lg m-2">
               {editPostId === post._id ? (
@@ -153,6 +153,7 @@ const Posts = () => {
                       Edit
                     </button>
                   </div>
+                  <div className='text-red-500'>{message}</div>
                 </div>
               )}
             </div>

@@ -9,10 +9,10 @@ const Template = (props) => {
     <div className="">
       <Header />
       <div className="flex">
-      <section className="w-[200px]">
+      <section className="w-[10%]">
       <SideMenu/>
       </section>
-      <section className="px-4 py-2">
+      <section className="px-4 py-2 w-[90%]">
       {props.children}
       </section>
       </div>
