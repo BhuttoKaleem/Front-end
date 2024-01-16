@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {Link} from 'react-router-dom'
 import axios from "axios";
-import { useSelector } from "react-redux";
-import Swal from "sweetalert2";
 const Posts = ({posts}) => {
-  const userData = useSelector((state) => state.userData);
-  const [message, setMessage] = useState();
-  const [blogPosts, setBlogPosts] = useState([]);
-  if (!blogPosts) {
-    setMessage("no post has been published yet");
-  }
+  const [message,setMessage] = useState();
+  const [blogPosts, setBlogPosts] = useState(posts);
 
   useEffect(() => {
     // Fetch blog posts from the backend when component mounts
@@ -21,26 +15,15 @@ const Posts = ({posts}) => {
       const response = await axios.get("http://localhost:5000/blog-posts"); // Replace with your backend API endpoint
       setBlogPosts(response.data); // Set fetched blog posts to state
     } catch (error) {
-      setMessage("Connection failed, Check Your Internet Connection:", error);
-    }
-  };
-
-  const deleteBlogPost = async (postId) => {
-    try {
-      await axios.delete(
-        `http://localhost:5000/blog-posts/deletepost/${postId}`
-      ); 
-      fetchBlogPosts(); 
-        
-    } catch (error) {
-    
+      console.log("Connection failed, Check Your Internet Connection:", error);
+      setMessage("Error connecting to the database. Demo is here")
     }
   };
   return (
     <section>
       <div className="container mx-auto mt-10">
         <div className="grid grid-cols-3 gap-4">
-          {blogPosts.map((post) => (
+          {blogPosts?.map((post) => (
             <div
               key={post._id}
               className="max-w-sm rounded overflow-none shadow-lg m-2"
@@ -62,26 +45,15 @@ const Posts = ({posts}) => {
                       })}
                   </span>
                 </div>
-              </div>
-              {userData && userData.role === "admin" && (
-                <div className="px-6 pt-4 pb-2">
-                  <button
-                    onClick={() => deleteBlogPost(post._id)}
-                    className="inline-block bg-red-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 hover:bg-red-600 focus:outline-none"
-                  >
-                    Delete
-                  </button>
-                  <button
-                    onClick={() => updateBlogPost(post._id)}
-                    className="inline-block bg-blue-500 rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 hover:bg-blue-600 focus:outline-none"
-                  >
-                    Edit
-                  </button>
-                </div>
-              )}
+              </div> 
             </div>
           ))}
         </div>
+        <span>
+        <p>{message}
+        <Link to="https://www.loom.com/share/0e081b3fddab485ba354c1b9257f325b?sid=daa9fd03-75c0-42ae-88ae-7125a2b14dc2"> Click here
+      </Link></p>
+      </span>
       </div>
     </section>
   );
