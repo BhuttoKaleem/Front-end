@@ -4,10 +4,6 @@ import axios from "axios";
 const Posts = ({posts}) => {
   const [message,setMessage] = useState();
   const [blogPosts, setBlogPosts] = useState(posts);
-  if(!fetchBlogPosts){
-    setMessage("Database is not connected. here is the demo of website")
-  }
-
   useEffect(() => {
     // Fetch blog posts from the backend when component mounts
     fetchBlogPosts();
@@ -19,11 +15,20 @@ const Posts = ({posts}) => {
       setBlogPosts(response.data); // Set fetched blog posts to state
     } catch (error) {
       console.log("Connection failed, Check Your Internet Connection:", error);
+      setMessage("Database is not connected. here is the demo of website")
     }
   };
   return (
     <section>
       <div className="container mx-auto mt-10">
+      {message ? (
+          <div>
+            <p>{message}</p>
+            <Link to="https://www.loom.com/share/0e081b3fddab485ba354c1b9257f325b?sid=daa9fd03-75c0-42ae-88ae-7125a2b14dc2">
+              Click here
+            </Link>
+          </div>
+        ) : (
         <div className="grid grid-cols-3 gap-4">
           {blogPosts?.map((post) => (
             <div
@@ -51,11 +56,7 @@ const Posts = ({posts}) => {
             </div>
           ))}
         </div>
-        <span>
-        <p>{message}
-        <Link to="https://www.loom.com/share/0e081b3fddab485ba354c1b9257f325b?sid=daa9fd03-75c0-42ae-88ae-7125a2b14dc2"> Click here
-      </Link></p>
-      </span>
+        )}
       </div>
     </section>
   );
