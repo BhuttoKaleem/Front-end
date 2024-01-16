@@ -15,8 +15,8 @@ function Header(){
   }
     return(
           <header className="">
-            <nav className="flex justify-between px-16 py-8 text-white bg-slate-600">
-                <div>
+            <nav className="flex flex-col sm:flex-row justify-between px-4 sm:px:16 py-4 sm:py-8 text-white bg-slate-600">
+                <div className="flex items-center">
                     <Link to="/">
                     <div className="flex gap-2">
                     <FaBookReader className="text-[2rem]" />
@@ -24,14 +24,14 @@ function Header(){
                     </div>
                     </Link>
                 </div>
-                <div>
+                <div className="flex items-center gap-6 sm:gap-0 mt-4 sm:mt-0">
                     <p className="flex items-center bg-white rounded-md">
                         <label htmlFor="Search" className="absolute left-[-1000px]">Search</label>
                         <input placeholder="Search..." className="bg-transparent p-2 rounded-md w-[250px] outline-none text-[#45474B]" type="text" name="search" id="search" />
                         <CiSearch className="text-black mr-2 text-2xl cursor-pointer hover:bg-gray-400" />            
                     </p>
                 </div>
-                <div className="flex gap-6 items-center">
+                <div className="flex gap-2 items-center">
                 {userData ? (
                     <div className="flex items-center gap-2 ">
                         {/* <Link to="/profile"/>   */}

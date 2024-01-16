@@ -7,8 +7,7 @@ const SideMenu = () => {
   const dispatch = useDispatch();
   const userData = useSelector((state)=>state.user.userData)
   return (
-    <div className="flex h-[120vh] justify-between">
-    <div className="w-full bg-blue-500">
+    <div className="flex h-full align-center justify-between sm:w-1/4 lg:w-1/2 bg-blue-500">
       <ul className="mt-8 text-center text-white font-bold">
         <li>
           <Link to="/">Home</Link>
@@ -27,7 +26,6 @@ const SideMenu = () => {
         </li> 
       </ul>
     </div>
-  </div>
   )
 }
 
