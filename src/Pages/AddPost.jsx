@@ -39,11 +39,11 @@ export default function CreatePost() {
             } catch (error) {
               // console.error('Failed to create post', error);
               // console.log(userId);
-              // Swal.fire({
-              //   title: "Blog publication failed!",
-              //   text: "enter text carefully! ",
-              //   icon: "error"
-              // });
+              Swal.fire({
+                title: "Blog publication failed!",
+                text: "there is some problem! ",
+                icon: "error"
+              });
             }
           }          
     return (
