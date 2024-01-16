@@ -4,6 +4,9 @@ import axios from "axios";
 const Posts = ({posts}) => {
   const [message,setMessage] = useState();
   const [blogPosts, setBlogPosts] = useState(posts);
+  if(!fetchBlogPosts){
+    setMessage("Database is not connected. here is the demo of website")
+  }
 
   useEffect(() => {
     // Fetch blog posts from the backend when component mounts
@@ -16,7 +19,6 @@ const Posts = ({posts}) => {
       setBlogPosts(response.data); // Set fetched blog posts to state
     } catch (error) {
       console.log("Connection failed, Check Your Internet Connection:", error);
-      setMessage("Error connecting to the database. Demo is here")
     }
   };
   return (
